@@ -34,9 +34,8 @@ platform :android do
   lane :deploy do
     fetch_and_increment_build_number
 
-    gradle(task: "clean")
     gradle(
-      task: "assemble",
+      task: "bundle",
       build_type: "release",
       properties: {
         "android.injected.signing.store.file" => ENV["KEYSTORE_FILE"],
