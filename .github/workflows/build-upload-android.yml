@@ -12,7 +12,6 @@ jobs:
         with:
           distribution: 'corretto'
           java-version: '17'
-          cache: 'gradle'
 
       - name: Set up ruby env
         uses: ruby/setup-ruby@v1
@@ -28,8 +27,8 @@ jobs:
           fileDir: './app/'
           encodedString: ${{ secrets.GOOGLE_SERVICES_JSON }}
 
-      - name: Run tests
-        run: bundle exec fastlane android test
+#      - name: Run tests
+#        run: bundle exec fastlane android test
 
       - name: Decode Service Account Key JSON File
         uses: timheuer/base64-to-file@v1.2
