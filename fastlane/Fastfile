@@ -82,9 +82,9 @@ platform :android do
     )
 
     versionCodes = [
-      productionVersionCodes,
-      betaVersionCodes,
-      alphaVersionCodes,
+#       productionVersionCodes,
+#       betaVersionCodes,
+#       alphaVersionCodes,
       internalVersionCodes
     ].reduce([], :concat)
 
