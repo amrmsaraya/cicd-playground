@@ -1,4 +1,4 @@
-package com.example.cicd.ui.theme
+package com.github.amrmsaraya.cicd.cicd.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

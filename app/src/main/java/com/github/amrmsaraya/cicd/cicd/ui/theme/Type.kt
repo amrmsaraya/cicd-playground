@@ -1,4 +1,4 @@
-package com.example.cicd.ui.theme
+package com.github.amrmsaraya.cicd.cicd.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

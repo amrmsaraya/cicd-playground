@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.cicd"
+    namespace = "com.github.amrmsaraya.cicd"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.cicd"
+        applicationId = "com.github.amrmsaraya.cicd"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
