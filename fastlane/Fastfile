@@ -48,7 +48,7 @@ platform :android do
    firebase_app_distribution(
       app: ENV["FIREBASE_APP_ID"],
       firebase_cli_token: ENV["FIREBASE_TOKEN"],
-      service_credentials_file: ENV["GOOGLE_PLAY_SERVICE_ACCOUNT_KEY"],
+      service_credentials_file: ENV["FIREBASE_SERVICE_ACCOUNT_KEY"],
       android_artifact_type: "APK",
       groups: "testers"
    )
@@ -87,7 +87,7 @@ platform :android do
     latest_release = firebase_app_distribution_get_latest_release(
       app: ENV["FIREBASE_APP_ID"],
       firebase_cli_token: ENV["FIREBASE_TOKEN"],
-      service_credentials_file: ENV["GOOGLE_PLAY_SERVICE_ACCOUNT_KEY"]
+      service_credentials_file: ENV["FIREBASE_SERVICE_ACCOUNT_KEY"]
     )
     increment_version_code({ version_code: latest_release[:buildVersion].to_i + 1 })
   end

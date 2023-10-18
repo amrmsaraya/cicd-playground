@@ -35,7 +35,7 @@ jobs:
         id: service_account_json_file
         with:
           fileName: 'service_account.json'
-          encodedString: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_KEY_JSON }}
+          encodedString: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
 
       - name: Decode Keystore File
         uses: timheuer/base64-to-file@v1.2
@@ -51,6 +51,6 @@ jobs:
           KEYSTORE_PASSWORD: ${{ secrets.DEBUG_KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.DEBUG_KEY_ALIAS}}
           KEY_PASSWORD: ${{ secrets.DEBUG_KEY_PASSWORD }}
-          GOOGLE_PLAY_SERVICE_ACCOUNT_KEY: ${{ steps.service_account_json_file.outputs.filePath }}
+          FIREBASE_SERVICE_ACCOUNT_KEY: ${{ steps.service_account_json_file.outputs.filePath }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
