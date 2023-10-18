@@ -60,21 +60,21 @@ platform :android do
   def latest_googleplay_version_code
     app_identifier = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
 
-    productionVersionCodes = google_play_track_version_codes(
-      package_name: app_identifier,
-      track: 'production',
-      json_key: ENV["ANDROID_JSON_KEY_FILE"]
-    )
-    betaVersionCodes = google_play_track_version_codes(
-      package_name: app_identifier,
-      track: 'beta',
-      json_key: ENV["ANDROID_JSON_KEY_FILE"]
-    )
-    alphaVersionCodes = google_play_track_version_codes(
-      package_name: app_identifier,
-      track: 'alpha',
-      json_key: ENV["ANDROID_JSON_KEY_FILE"]
-    )
+#     productionVersionCodes = google_play_track_version_codes(
+#       package_name: app_identifier,
+#       track: 'production',
+#       json_key: ENV["ANDROID_JSON_KEY_FILE"]
+#     )
+#     betaVersionCodes = google_play_track_version_codes(
+#       package_name: app_identifier,
+#       track: 'beta',
+#       json_key: ENV["ANDROID_JSON_KEY_FILE"]
+#     )
+#     alphaVersionCodes = google_play_track_version_codes(
+#       package_name: app_identifier,
+#       track: 'alpha',
+#       json_key: ENV["ANDROID_JSON_KEY_FILE"]
+#     )
     internalVersionCodes = google_play_track_version_codes(
       package_name: app_identifier,
       track: 'internal',
