@@ -83,10 +83,14 @@ platform :android do
   end
 
   desc "Fetches the latest version code from the Firebase App Distribution and increments it by 1"
-    lane :fetch_and_increment_firebase_build_number do
-      incremented_version_code = latest_firebase_version_code() + 1
-      increment_version_code(version_code: incremented_version_code)
-    end
+  lane :fetch_and_increment_firebase_build_number do
+    latest_release = firebase_app_distribution_get_latest_release(
+      app: ENV{"FIREBASE_APP_ID"},
+      firebase_cli_token: ENV["FIREBASE_TOKEN"],
+      service_credentials_file: ENV["GOOGLE_PLAY_SERVICE_ACCOUNT_KEY"],
+    )
+    increment_version_code({ version_code: latest_release[:buildVersion].to_i + 1 })
+  end
 
   def latest_googleplay_version_code
     app_identifier = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
@@ -120,15 +124,6 @@ platform :android do
     ].reduce([], :concat)
 
     return versionCodes.max
-
-    def latest_firebase_version_code
-      latest_release = firebase_app_distribution_get_latest_release(
-        app: ENV{"FIREBASE_APP_ID"},
-        firebase_cli_token: ENV["FIREBASE_TOKEN"],
-        service_credentials_file: ENV["GOOGLE_PLAY_SERVICE_ACCOUNT_KEY"],
-      )
-      increment_version_code({ version_code: latest_release[:buildVersion].to_i + 1 })
-    end
 
   end
 end
