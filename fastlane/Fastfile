@@ -35,7 +35,7 @@ platform :android do
     fetch_and_increment_build_number
 
     gradle(
-      task: "bundle",
+      task: "assemble",
       build_type: "release",
       properties: {
         "android.injected.signing.store.file" => ENV["KEYSTORE_FILE"],
