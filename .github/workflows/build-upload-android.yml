@@ -20,6 +20,14 @@ jobs:
           ruby-version: 3.2
           bundler-cache: true
 
+      - name: Decode google-services JSON File
+        uses: timheuer/base64-to-file@v1.2
+        id: google_services_json_file
+        with:
+          fileName: 'google-services.json'
+          fileDir: './app/'
+          encodedString: ${{ secrets.GOOGLE_SERVICES_JSON }}
+
       - name: Run tests
         run: bundle exec fastlane android test
 
@@ -27,14 +35,14 @@ jobs:
         uses: timheuer/base64-to-file@v1.2
         id: service_account_json_file
         with:
-          fileName: "serviceAccount.json"
-          encodedString: ${{ secrets.GPLAY_SERVICE_ACCOUNT_KEY_JSON }}
+          fileName: 'service_account.json'
+          encodedString: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_KEY_JSON }}
 
       - name: Decode Keystore File
         uses: timheuer/base64-to-file@v1.2
         id: android_keystore
         with:
-          fileName: "android_keystore.keystore"
+          fileName: 'android_keystore.keystore'
           encodedString: ${{ secrets.RELEASE_KEYSTORE_FILE }}
 
       - name: Build & deploy Android release
