@@ -31,27 +31,27 @@ platform :android do
   end
 
   desc "Submit a new version to Firebase App Distribution"
-     lane :firebase do
-       fetch_and_increment_firebase_build_number
+  lane :firebase do
+    fetch_and_increment_firebase_build_number
 
-      gradle(
-        task: "assemble",
-        build_type: "debug",
-        properties: {
-          "android.injected.signing.store.file" => ENV["KEYSTORE_FILE"],
-          "android.injected.signing.store.password" => ENV["KEYSTORE_PASSWORD"],
-          "android.injected.signing.key.alias" => ENV["KEY_ALIAS"],
-          "android.injected.signing.key.password" => ENV["KEY_PASSWORD"],
-        }
-      )
+    gradle(
+      task: "assemble",
+      build_type: "debug",
+      properties: {
+        "android.injected.signing.store.file" => ENV["KEYSTORE_FILE"],
+        "android.injected.signing.store.password" => ENV["KEYSTORE_PASSWORD"],
+        "android.injected.signing.key.alias" => ENV["KEY_ALIAS"],
+        "android.injected.signing.key.password" => ENV["KEY_PASSWORD"],
+     }
+    )
 
-      firebase_app_distribution(
-         app: ENV["FIREBASE_APP_ID"],
-         firebase_cli_token: ENV["FIREBASE_TOKEN"],
-         service_credentials_file: ENV["GOOGLE_PLAY_SERVICE_ACCOUNT_KEY"],
-         android_artifact_type: "APK",
-         groups: "testers"
-       )
+   firebase_app_distribution(
+      app: ENV["FIREBASE_APP_ID"],
+      firebase_cli_token: ENV["FIREBASE_TOKEN"],
+      service_credentials_file: ENV["GOOGLE_PLAY_SERVICE_ACCOUNT_KEY"],
+      android_artifact_type: "APK",
+      groups: "testers"
+   )
     end
 
   desc "Deploy a new version to the Google Play"
