@@ -47,8 +47,8 @@ platform :android do
 
       firebase_app_distribution(
          app: ENV["FIREBASE_APP_ID"],
-         firebase_cli_token: ENV["FIREBASE_TOKEN"]
-         service_credentials_file: ENV["GOOGLE_PLAY_SERVICE_ACCOUNT_KEY"]
+         firebase_cli_token: ENV["FIREBASE_TOKEN"],
+         service_credentials_file: ENV["GOOGLE_PLAY_SERVICE_ACCOUNT_KEY"],
          android_artifact_type: "APK"
        )
     end
