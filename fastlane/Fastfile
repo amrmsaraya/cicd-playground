@@ -131,7 +131,6 @@ platform :android do
     ].reduce([], :concat)
 
     return versionCodes.max
+  end
 
-  end
-  end
 end
