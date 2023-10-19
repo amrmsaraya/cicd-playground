@@ -73,7 +73,8 @@ platform :android do
       track: "internal",
       json_key: ENV["GOOGLE_PLAY_SERVICE_ACCOUNT_KEY"],
       skip_upload_aab: true,
-      version_code: latest_googleplay_version_code() + 1
+      version_code: latest_googleplay_version_code() + 1,
+      skip_upload_changelogs: true
     )
   end
 
