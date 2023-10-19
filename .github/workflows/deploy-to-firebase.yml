@@ -1,4 +1,4 @@
-name: Android Build & Deploy
+name: Deploy to Firebase App Distribution
 
 on:
   push:
@@ -29,28 +29,30 @@ jobs:
           fileDir: './app/'
           encodedString: ${{ secrets.GOOGLE_SERVICES_JSON }}
 
-#      - name: Run tests
-#        run: bundle exec fastlane android test
+      #      - name: Run tests
+      #        run: bundle exec fastlane android test
 
       - name: Decode Service Account Key JSON File
         uses: timheuer/base64-to-file@v1.2
         id: service_account_json_file
         with:
           fileName: 'service_account.json'
-          encodedString: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_KEY_JSON }}
+          encodedString: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
 
       - name: Decode Keystore File
         uses: timheuer/base64-to-file@v1.2
         id: android_keystore
         with:
           fileName: 'android_keystore.keystore'
-          encodedString: ${{ secrets.RELEASE_KEYSTORE_FILE }}
+          encodedString: ${{ secrets.DEBUG_KEYSTORE_FILE }}
 
-      - name: Build & deploy Android release
-        run: bundle exec fastlane android deploy
+      - name: Build & deploy Android release to firebase app distribution
+        run: bundle exec fastlane android firebase
         env:
           KEYSTORE_FILE: ${{ steps.android_keystore.outputs.filePath }}
-          KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
-          KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS}}
-          KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
-          GOOGLE_PLAY_SERVICE_ACCOUNT_KEY: ${{ steps.service_account_json_file.outputs.filePath }}
+          KEYSTORE_PASSWORD: ${{ secrets.DEBUG_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.DEBUG_KEY_ALIAS}}
+          KEY_PASSWORD: ${{ secrets.DEBUG_KEY_PASSWORD }}
+          FIREBASE_SERVICE_ACCOUNT_KEY: ${{ steps.service_account_json_file.outputs.filePath }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}

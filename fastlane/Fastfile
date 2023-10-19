@@ -55,7 +55,7 @@ platform :android do
     end
 
   desc "Deploy a new version to the Google Play"
-  lane :deploy do
+  lane :internal do
     fetch_and_increment_googleplay_build_number
 
     gradle(
@@ -72,7 +72,8 @@ platform :android do
     upload_to_play_store(
       track: "internal",
       json_key: ENV["GOOGLE_PLAY_SERVICE_ACCOUNT_KEY"],
-      skip_upload_aab: true
+      skip_upload_aab: true,
+      release_status: "draft"
     )
   end
 
