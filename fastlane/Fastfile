@@ -72,7 +72,8 @@ platform :android do
     upload_to_play_store(
       track: "internal",
       json_key: ENV["GOOGLE_PLAY_SERVICE_ACCOUNT_KEY"],
-      skip_upload_aab: true
+      skip_upload_aab: true,
+      version_code: latest_googleplay_version_code() + 1
     )
   end
 
