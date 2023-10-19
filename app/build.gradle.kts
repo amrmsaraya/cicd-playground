@@ -12,7 +12,7 @@ android {
         applicationId = "com.github.amrmsaraya.cicd"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
+        versionCode = 25
         versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

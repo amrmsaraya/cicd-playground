@@ -79,7 +79,10 @@ platform :android do
   desc "Fetches the latest version code from the Play Console and increments it by 1"
   lane :fetch_and_increment_googleplay_build_number do
     incremented_version_code = latest_googleplay_version_code() + 1
-    increment_version_code(version_code: incremented_version_code)
+    increment_version_code(
+      version_code: incremented_version_code,
+      gradle_file_path: "app/build.gradle.kts"
+    )
   end
 
   desc "Fetches the latest version code from the Firebase App Distribution and increments it by 1"
@@ -89,7 +92,11 @@ platform :android do
       firebase_cli_token: ENV["FIREBASE_TOKEN"],
       service_credentials_file: ENV["FIREBASE_SERVICE_ACCOUNT_KEY"]
     )
-    increment_version_code({ version_code: latest_release[:buildVersion].to_i + 1 })
+    incremented_version_code = latest_release[:buildVersion].to_i + 1
+    increment_version_code(
+      version_code: incremented_version_code,
+      gradle_file_path: "app/build.gradle.kts"
+    )
   end
 
   def latest_googleplay_version_code
@@ -125,5 +132,6 @@ platform :android do
 
     return versionCodes.max
 
+  end
   end
 end
