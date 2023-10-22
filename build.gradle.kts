@@ -15,7 +15,6 @@ allprojects {
     configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
         outputToConsole.set(true)
         outputColorName.set("RED")
-        ignoreFailures.set(true)
         reporters {
             reporter(ReporterType.PLAIN)
             reporter(ReporterType.CHECKSTYLE)
