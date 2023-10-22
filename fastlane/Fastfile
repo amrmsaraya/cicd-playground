@@ -34,6 +34,8 @@ platform :android do
   lane :firebase do
     fetch_and_increment_firebase_build_number
 
+    gradle(task: "ktlintCheck")
+
     gradle(
       task: "assemble",
       build_type: "debug",
